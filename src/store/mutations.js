@@ -7,5 +7,10 @@ export default{
 
 	addArticleNum(state){
 		state.articleNum+=20;
+	},
+
+	addArticle(state,res){
+		// res.data = res.data.data;
+		state.article = res.data;
 	}
 }

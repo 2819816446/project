@@ -1,4 +1,4 @@
-# douban_movie1
+# CNode
 
 > A Vue.js project
 

@@ -5,11 +5,14 @@
 
 		    </div>
 		    <div class="weui-tabbar">
+		    	
 		        <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
-		            
+		    		<router-link :to='{name:"ArticleItem"}'>
 		            <i class="iconfont icon-shouye"></i>
 		            <p class="weui-tabbar__label">首页</p>
+		            </router-link>
 		        </a>
+		   		
 		        <a href="javascript:;" class="weui-tabbar__item">
 		            <i class="iconfont icon-fabu"></i>
 		            
@@ -32,6 +35,7 @@
 
 <!-- 需在main.js首页引入weui.css等模块 -->
 <script>
+
 	export default{
 
 	}

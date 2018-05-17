@@ -45,4 +45,25 @@ export default{
 
 	},
 
+	setArticle(context,url){
+		// var url = String(url);
+		console.log(url);
+		axios.get(url,{
+			params:{
+				mdrender:false,
+			}
+		}).then(function(res){
+			// res.data 才是真实返回的数据  而不是data
+			console.log(res.data.success)
+			if (res.data.success === true) {
+				context.commit('addArticle',res.data);
+			}else {
+                console.log('Sorry, Something wrong happened when getting the remote data')
+            }
+
+		}).catch(function(res) {
+            console.log('ArticleDetail.vue: ', res);
+        });
+	}
+
 }

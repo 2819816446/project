@@ -13,21 +13,25 @@
 
 
 		        <a v-for='item of articleLists' :key='item.length' href="javascript:void(0);" class="weui-media-box">
-					<div class="art_hd_wrap">
-						<p class="top" v-show="item.top">置顶</p>
-						<p id="no_top" v-show="!item.top">{{transToCN(item.tab)}}</p>
-						<p class="title">{{item.title}}</p>
-					</div>
+		        	<router-link :to='{name:"ArticleDetail",params:{id:item.id}}'>
+						<div class="art_hd_wrap">
+							<p class="top" v-show="item.top">置顶</p>
+							<p id="no_top" v-show="!item.top">{{transToCN(item.tab)}}</p>
+							<p class="title">{{item.title}}</p>
+						</div>
+					</router-link>
 					<div class="user_wrap">
 						<img v-bind:src="item.author.avatar_url" height="48" width="48" alt="" >
-						<div class="user_wrap_1">
-							<p>{{item.author.loginname}}</p>
-							<p><span>{{item.reply_count}}</span> / <span>{{item.visit_count}}</span></p>
-						</div>
-						<div class="user_wrap_2">
-							<p>创建于：<span>{{formatTime(item.create_at)}}</span></p>
-							<p>{{lastRplyToNow(item.last_reply_at)}}</p>
-						</div>
+						<router-link :to='{name:"ArticleDetail",params:{id:item.id}}'>
+							<div class="user_wrap_1">
+								<p>{{item.author.loginname}}</p>
+								<p><span>{{item.reply_count}}</span> / <span>{{item.visit_count}}</span></p>
+							</div>
+							<div class="user_wrap_2">
+								<p>创建于：<span>{{formatTime(item.create_at)}}</span></p>
+								<p>{{lastRplyToNow(item.last_reply_at)}}</p>
+							</div>
+						</router-link>
 						<div class="clear"></div>
 					</div>
 		        </a>
@@ -164,7 +168,8 @@
 				options.pullDownRefresh = {
 				  threshold: 50, // 当下拉到超过顶部 50px 时，触发 pullingDown 事件
 				  stop: 20 // 刷新数据的过程中，回弹停留在距离顶部还有 20px 的位置
-				}	        	
+				}	 
+				options.click = true;  // 一开始的点击事件被bscroll阻止了，设置这个才能点击     	
 		        this.scroll = new BScroll(this.$refs.artivle_wrap, options)
 		  
 				this.scroll.on('pullingDown', () => {
