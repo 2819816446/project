@@ -12,6 +12,7 @@
   import FooterBar from './components/FooterBar.vue';
   import ArticleItem from './components/ArticleItem.vue';
   import ArticleDetail from './components/ArticleDetail.vue';
+  import UserDetail from './components/userDetail.vue';
   export default {
     name: 'App',
     components: {
@@ -19,7 +20,8 @@
       'coming_soon':ComingSoon,
       'Footer-Bar':FooterBar,
       "Article-Item":ArticleItem,
-      'Article-Detail':ArticleDetail
+      'Article-Detail':ArticleDetail,
+      'User-Detail':UserDetail
     },
   }
 </script>

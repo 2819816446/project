@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import ComingSoon from '../components/coming_soon.vue'
 import ArticleItem from '../components/ArticleItem.vue'
 import ArticleDetail from '../components/ArticleDetail.vue'
+import UserDetail from '../components/userDetail.vue'
 
 Vue.use(Router)
 
@@ -24,8 +25,8 @@ export default new Router({
     // 用户详情页
      {
       path: '/user/:loginname',
-      name: 'ArticleDetail',
-      component: ArticleDetail
+      name: 'UserDetail',
+      component: UserDetail
     },   
     {
       path: '/coming_soon',

@@ -50,7 +50,7 @@ export default{
 		console.log(url);
 		axios.get(url,{
 			params:{
-				mdrender:false,
+				mdrender:true,
 			}
 		}).then(function(res){
 			// res.data 才是真实返回的数据  而不是data

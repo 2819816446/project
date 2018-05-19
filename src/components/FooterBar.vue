@@ -42,7 +42,7 @@
 </script>
 
 <style>
-	@import '../static/font/iconfont.css'
+	@import url('../../static/font/iconfont.css')
 	.footer{position:fixed;bottom:0;width: 100%;height: 3rem;}
 	.weui-tabbar{position: fixed;}
 	.weui-bar__item_on i{color: #09BB07;}

@@ -1,11 +1,12 @@
 <template>
-	<div class="article_detail" ref="article_detail">
+	<div class="article_detail content-box markdown-body" ref="article_detail">
 		<div class="detail_title">
 			{{article.title}}
 		</div>
 	   <div class="weui-media-box">
 			<div class="user_wrap">
 				<!-- ../assets/img/advater.jpg  v-bind:src 不需要{{}}-->
+
 				<img v-bind:src="article.author.avatar_url" height="48" width="48" alt="" >
 				<div class="art_hd_wrap">
 					<p class="top">置顶</p>
@@ -18,9 +19,10 @@
 				<div class="clear"></div>
 			</div>
 	    </div>	
-
-	    <div class="content_wrap">
-	     	{{article.content}}
+		
+		<!-- v-html 解决markdown字符串直接显示的格式问题 -->
+	    <div class="content_wrap" id="content" v-html="article.content">
+	     	<!-- {{}} -->
 	    </div>	
 
 
@@ -30,19 +32,20 @@
 
 	
 			<div v-for="(reply,index) of article.replies" class="user_wrap_new">
+				<router-link :to='{name:"UserDetail",params:{loginname:reply.author.loginname}}'>
 				<img v-bind:src="reply.author.avatar_url" height="48" width="48" alt="" >
-
+				</router-link>
 				<div class="user_wrap_2">
 					<p>{{reply.author.loginname}}</p>
 				</div>
 				<div class="art_hd_wrap">
 					<p class="">{{index+1}}楼</p>
-					<p class="">19天前</p>
+					<p class="">{{lastRplyToNow(reply.create_at)}}</p>
 				</div>		
 		
 				<div class="clear"></div>
-				<div>
-					<p>{{reply.content}}</p>
+				<div v-html="reply.content">
+					<!-- <p>{{}}</p> -->
 				</div>
 			</div>	
 
@@ -169,7 +172,10 @@
 	
 </script>
 
+
 <style>
+	/*import css 需要 url() 而不是直接''*/
+	@import url('../assets/css/article_detail.css')
 	/*.weui-media-box{border-top: 1px solid red;}*/    
 	.clear{clear: both;}
 	p{text-align: left;}
@@ -179,7 +185,7 @@
 	.art_hd_wrap{width: 96%;height: 2rem;margin: 0 auto;}
 	.art_hd_wrap p{float: left;text-align: left;}
 	.art_hd_wrap p:nth-of-type(1){width: 2.5rem;height: 1.5rem;border-radius: 2px;color: white;background:#80BD01;margin-top: 0.25rem;margin-right: 1rem;text-align: center;}
-	.user_wrap{width: 96%;height: 4rem;margin: 0 auto;position: relative;overflow: hidden;}
+	.article_detail .user_wrap{width: 96%;height: 4rem;margin: 0 auto;position: relative;overflow: hidden;}
 	.user_wrap img{display:block;width: 2.7rem;height: 2.7rem;border-radius: 50%;margin-top: 0.2rem;margin-right: 1rem;float: left;}
 
 	.user_wrap_new{width: 96%;margin: 0 auto;position: relative;overflow: hidden;border-bottom:2px solid gray;}
@@ -194,9 +200,10 @@
 	.user_wrap_2 p:nth-of-type(2){float: right;}
 
 	/*content*/
-	.content_wrap{width: 100%;border-bottom: 10px solid gray;padding: 14px;box-sizing: border-box;}
-
+	#content{width: 100%;border-bottom: 10px solid gray;padding: 14px;box-sizing: border-box;text-align: left;}
+	#content img{width: 100%;}
 
 	/**/
+	.replay{padding-bottom: 4rem;}
 	.replay_title{margin: 0.5rem 10px;}
 </style>

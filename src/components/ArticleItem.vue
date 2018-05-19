@@ -13,15 +13,19 @@
 
 
 		        <a v-for='item of articleLists' :key='item.length' href="javascript:void(0);" class="weui-media-box">
-		        	<router-link :to='{name:"ArticleDetail",params:{id:item.id}}'>
+		        	
 						<div class="art_hd_wrap">
+							<router-link :to='{name:"ArticleDetail",params:{id:item.id}}'>
 							<p class="top" v-show="item.top">置顶</p>
 							<p id="no_top" v-show="!item.top">{{transToCN(item.tab)}}</p>
 							<p class="title">{{item.title}}</p>
+							</router-link>
 						</div>
-					</router-link>
+					
 					<div class="user_wrap">
+						<router-link :to='{name:"UserDetail",params:{loginname:item.author.loginname}}'>
 						<img v-bind:src="item.author.avatar_url" height="48" width="48" alt="" >
+						</router-link>
 						<router-link :to='{name:"ArticleDetail",params:{id:item.id}}'>
 							<div class="user_wrap_1">
 								<p>{{item.author.loginname}}</p>
@@ -238,7 +242,7 @@
 	.title{line-height: 2rem;width: 15rem;height: 2rem;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 	#no_top{width: 2.5rem;height: 1.5rem;border-radius: 2px;color: black;background:#E3E3E3;margin-top: 0.25rem;margin-right: 1rem;text-align: center;}
 
-	.user_wrap{width: 96%;height: 3rem;margin: 0 auto;position: relative;overflow: hidden;}
+	.artivle_wrap .user_wrap{width: 96%;height: 4rem;margin: 0 auto;position: relative;overflow: hidden;border-bottom: 1px solid gray;}
 	.user_wrap img{display:block;width: 2.7rem;height: 2.7rem;border-radius: 50%;margin-top: 0.2rem;margin-right: 1rem;float: left;}
 	/**/
 	.user_wrap_1{float: left;width: 80%;}
