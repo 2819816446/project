@@ -5,6 +5,7 @@ import ComingSoon from '../components/coming_soon.vue'
 import ArticleItem from '../components/ArticleItem.vue'
 import ArticleDetail from '../components/ArticleDetail.vue'
 import UserDetail from '../components/userDetail.vue'
+import Login from '../components/login.vue'
 
 Vue.use(Router)
 
@@ -32,6 +33,11 @@ export default new Router({
       path: '/coming_soon',
       name: 'ComingSoon',
       component: ComingSoon
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     },
     // {
     //   path: '/topic/:id',

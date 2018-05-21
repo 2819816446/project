@@ -12,5 +12,14 @@ export default{
 	addArticle(state,res){
 		// res.data = res.data.data;
 		state.article = res.data;
-	}
+	},
+
+	setLoginname(state,value){
+		 localStorage.setItem("loginname",value);
+	},
+	getLoginname(state){
+		state.loginname = localStorage.getItem("loginname");
+		return state.loginname;
+		 
+	}	
 }

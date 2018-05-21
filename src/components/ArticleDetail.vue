@@ -47,11 +47,10 @@
 				<div v-html="reply.content">
 					<!-- <p>{{}}</p> -->
 				</div>
-			</div>	
-
-
-			
+			</div>				
 	    </div>
+
+	    <div class="ext-btn-reply" @click="goback()"><i class="iconfont icon-xiangzuo"></i></div>
 
 		
 	</div>
@@ -81,6 +80,9 @@
 	        }	
 		},
 		methods:{
+			goback(){
+				this.$router.go(-1);	
+			},
 			getData(){
 				// 获取参数
 				var id = this.$route.params.id;
@@ -176,6 +178,8 @@
 <style>
 	/*import css 需要 url() 而不是直接''*/
 	@import url('../assets/css/article_detail.css')
+
+	@import url('../../static/font/iconfont1.css')
 	/*.weui-media-box{border-top: 1px solid red;}*/    
 	.clear{clear: both;}
 	p{text-align: left;}
@@ -206,4 +210,26 @@
 	/**/
 	.replay{padding-bottom: 4rem;}
 	.replay_title{margin: 0.5rem 10px;}
+
+	.ext-btn-reply {
+	    position: fixed;
+	    right: 16px;
+	    bottom: 90px;
+	    background: #80bd01;
+	    /*color: #fff;*/
+	    color: white;
+	    display: -webkit-box;
+	    display: flex;
+	    border-radius: 50%;
+	    width: 42px;
+	    height: 42px;
+	    -webkit-box-pack: center;
+	    justify-content: center;
+	    -webkit-box-align: center;
+	    align-items: center;
+	    box-shadow: 2px 6px 12px #c7c7c7;
+	    transition: all .33s linear;
+	    
+	}
+	.ext-btn-reply i{font-size: 1.5rem;}
 </style>
