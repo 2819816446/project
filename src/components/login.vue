@@ -36,7 +36,7 @@
 </template>
 
 <script>
-// 组件里都是用 this.$store 访问数据
+// 组件里都是用 this.$store 访问数据的
 	import BScroll from 'better-scroll'
 	import axios from 'axios'
 	const options = {
