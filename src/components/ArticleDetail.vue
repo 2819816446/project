@@ -50,9 +50,10 @@
 			</div>				
 	    </div>
 
-	    <div class="ext-btn-reply" @click="goback()"><i class="iconfont icon-xiangzuo"></i></div>
+	    
 
 		
+	    <div class="ext-btn-reply" @click="goback()"><i class="iconfont icon-xiangzuo"></i></div>
 	</div>
 </template>
 

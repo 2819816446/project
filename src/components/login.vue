@@ -29,16 +29,21 @@
 	            <!-- <p v-if="loginname" class="weui-toast__content">登入成功</p> -->
 	            <!-- <p v-if="!loginname" class="weui-toast__content">AccessToken错误</p> -->
 	        </div>
-	    </div>        	
+	    </div>   
+
+
+
 	</div>
 
 
 </template>
 
 <script>
-// 组件里都是用 this.$store 访问数据的
+// 组件里都是用 this.$store 访问数据
 	import BScroll from 'better-scroll'
-	import axios from 'axios'
+	// import axios from 'axios'
+	import axios_my from '../http/http_my.js'
+
 	const options = {
 	  scrollY: true, // 因为scrollY默认为true，其实可以省略
 	}	
@@ -131,27 +136,43 @@
 
 			// 用户最近回复+最近发布数据
 			login(){
+				console.log(this.$router);
+				console.log(this.$route);
 				this.loading = true;
-				
 				var accessToken = this.accesstoken;
 				console.log(accessToken)
 
 				// post 请求，直接加参数，无需params
 				var url = 'https://cnodejs.org/api/v1/accesstoken';
 				console.log(url);
-				axios.post(url,{
+				axios_my.post(url,{
 					accesstoken:accessToken
 				}).then(res=>{
 					if (res.data.success) {
 						this.loginname = res.data.loginname;
 						this.loading = false;
-						this.login_success = true;
+						console.log("axios then成功");
+
+						// this.login_success = true;
 
 						// 设置loginname
-						this.$store.commit('setLoginname',res.data.loginname);
+						this.$store.commit('login',res.data.loginname);
+						// 设置accesstoken
+						this.$store.commit('addAccessToken',accessToken);
 
-						console.log("login.vue name:"+res.data.loginname)
-						this.$router.push({name:"UserDetail",params:{loginname:res.data.loginname}});
+						console.log("login.vue name:"+res.data.loginname);
+
+						//.query.redirect this.$router.push({name:"UserDetail",params:{loginname:res.data.loginname}});
+						
+						var query_full_path = this.$route.query.redirect;
+						if (query_full_path) {
+
+							this.$router.push(query_full_path);
+						}else{
+							
+							this.$router.push({name:"UserDetail",params:{loginname:res.data.loginname}});
+						}
+
 
 
 					}
@@ -162,17 +183,17 @@
 					// 取消loading
 					this.loading = false;
 					// this.login_success = true;
-					this.clearToast();
 					// 显示错误toast
 					console.log("login.vue 获取数据失败");
 				});
 
-				this.clearToast();
 
 			},
 
+
+
 			getLoginname(){
-				this.loginname = this.$store.commit('getLoginname');
+				// this.loginname = this.$store.commit('getLoginname');
 
 			},
 		
@@ -234,4 +255,7 @@
 	.hide{opacity: 0; display: none;}
 	.mask_hide{display: none;}
 	.mask_show{display: block;}
+
+
+	
 </style>

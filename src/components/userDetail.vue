@@ -106,6 +106,10 @@
 		    </div>
 		</div>
 
+
+
+		<!-- <i class="iconfont icon-xiangzuo"></i> -->
+		<div v-show="this.$store.state.accesstoken" class="ext-btn-reply" @click="ClearAccesstokenlogout()">注销</div>
 	</div>
 </template>
 
@@ -254,7 +258,13 @@
 				this.flag2 = false;
 				this.flag3 = true;
 				console.log("话题收藏");
-			}			
+			},
+			// 退出登入
+			ClearAccesstokenlogout(){
+				this.$store.commit("ClearAccessToken");
+				this.$router.push('/login');
+			},
+			
 		
 
 		},
@@ -318,5 +328,28 @@
 	.user_wrap_2 p:nth-of-type(1){float: left;width: 10rem;text-align: left;}
 	.user_wrap_2 p:nth-of-type(2){float: right;}
 	.no_p{color: #023926;font-size: 2rem;margin:5rem auto 0 auto;text-align: center;width: 80%;}
+
+
+	.ext-btn-reply {
+	    position: fixed;
+	    right: 16px;
+	    bottom: 90px;
+	    background: #80bd01;
+	    /*color: #fff;*/
+	    color: white;
+	    display: -webkit-box;
+	    display: flex;
+	    border-radius: 50%;
+	    width: 42px;
+	    height: 42px;
+	    -webkit-box-pack: center;
+	    justify-content: center;
+	    -webkit-box-align: center;
+	    align-items: center;
+	    box-shadow: 2px 6px 12px #c7c7c7;
+	    transition: all .33s linear;
+	    
+	}
+	.ext-btn-reply i{font-size: 1.5rem;}		
 
 </style>

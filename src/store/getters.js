@@ -11,5 +11,10 @@ export default{
 	getArticleLists: state => state.articleLists,      
 	getArticleNum(state){
 		return state.articleNum;
+	},
+
+	// 获取tokens
+	gt_getToken(state){
+		return state.token;
 	}
 }

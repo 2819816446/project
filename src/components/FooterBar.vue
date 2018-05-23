@@ -23,19 +23,21 @@
 		            
 		            <p class="weui-tabbar__label">消息</p>
 		        </a>
-		        <a v-show="!loginname" href="javascript:;" v-bind:class="{'weui-bar__item_on':active4}" class="weui-tabbar__item" @click="go('/login')">
+		        <a v-if="!this.$store.state.accesstoken" href="javascript:;" v-bind:class="{'weui-bar__item_on':active4}" class="weui-tabbar__item" @click="go('/login')">
 		            <i class="iconfont icon-04"></i>
 		           
 		            <p class="weui-tabbar__label">我的</p>
 		        </a>
 
-		        <a v-show="loginname" href="javascript:;" v-bind:class="{'weui-bar__item_on':active4}" class="weui-tabbar__item" @click="go('/me')">
+		        <a v-if="this.$store.state.accesstoken" href="javascript:;" v-bind:class="{'weui-bar__item_on':active4}" class="weui-tabbar__item" @click="go('/me')">
 		            <i class="iconfont icon-04"></i>
 		           
 		            <p class="weui-tabbar__label">我的</p>
 		        </a>		        
 		    </div>
 		</div>
+
+
 	</div>
 </template>
 
@@ -49,13 +51,15 @@
 				active2:false,
 				active3:false,
 				active4:false,
-				router_name:""
+				router_name:"",
+				loginname:""
 
 			}
 		},
 		computed:{
-			getLoginname(){
-				// this.loginname = localStorage.getItem('loginname');
+			loginname(){
+				this.loginname = this.$store.state.loginname;
+				cconsole.log("foter-loginname:"+loginname);
 			}
 		},
 		methods:{
@@ -77,14 +81,38 @@
 					this.active2 = false;
 					this.active3 = true;
 					this.active4 = false;
-				}else if(url == "/login"){
+				}else if(url == "/login" || url == "/me"){
 					this.active1 = false;
 					this.active2 = false;
 					this.active3 = false;
 					this.active4 = true;
 				}
-				this.$router.push(url);
+
+
+
+				if(url == "/me"){
+					// token 里存loginnane
+					this.$router.push({name:"UserDetail",params:{loginname:this.$store.state.loginname}});
+				}else{
+					this.$router.push(url);
+
+				}
+				// var accesstoken = router.app.$options.store.state.accesstoken;
+				console.log(this.$store.state);
+
+
+				// var accesstoken = this.$router.state.accesstoken;
+				// console.log("Foter-bar accesstoken"+accesstoken);
+	    		// if(accesstoken){
+	    		// 	next({name:'UserDetail',});
+	    		// }else{
+	    		// 	{name:"UserDetail",params:{loginname:topic_collect.author.loginname}}
+		    	// 	next();
+	    		// }
+
 			},
+
+
 
 
 		},
@@ -95,6 +123,7 @@
 		},
 
 		mounted(){
+			// console.log("footerBar-router:"+ this.$router);
 			
 		},
 
@@ -103,7 +132,9 @@
 			// this.getUserTopicClection();
 			// console.log("aaaaaaaa"+this.loginname);
     		// this.loginname = localStorage.getItem('loginname');
-    		next();
+
+	    	next();
+
 	    	
     		
 		},
@@ -116,4 +147,7 @@
 	.footer{position:fixed;bottom:0;width: 100%;height: 3rem;}
 	.weui-tabbar{position: fixed;}
 	.weui-bar__item_on i{color: #09BB07;}
+
+
+
 </style>
