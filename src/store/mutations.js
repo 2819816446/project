@@ -36,12 +36,12 @@ export default{
 
 	// addAccessToken
 	addAccessToken(state,data){
-		// localStorage.accesstoken = data;
+		localStorage.accesstoken = data;
          state.accesstoken = data;
 	},
 	// ClearAccessToken
 	ClearAccessToken(state,data){
-		// localStorage.accesstoken = data;
+		localStorage.accesstoken = "";
          state.accesstoken = "";
 	}	
 

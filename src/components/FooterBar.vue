@@ -23,13 +23,14 @@
 		            
 		            <p class="weui-tabbar__label">消息</p>
 		        </a>
-		        <a v-if="!this.$store.state.accesstoken" href="javascript:;" v-bind:class="{'weui-bar__item_on':active4}" class="weui-tabbar__item" @click="go('/login')">
+		        <!-- !this.$store.state.accesstoken 取state里的accesstoken 刷新后，accesstoken就清空了，会出现再次登入的情况   localStorage.accesstoken --> 
+		        <a v-if="!this.accesstoken" href="javascript:;" v-bind:class="{'weui-bar__item_on':active4}" class="weui-tabbar__item" @click="go('/login')">
 		            <i class="iconfont icon-04"></i>
 		           
 		            <p class="weui-tabbar__label">我的</p>
 		        </a>
 
-		        <a v-if="this.$store.state.accesstoken" href="javascript:;" v-bind:class="{'weui-bar__item_on':active4}" class="weui-tabbar__item" @click="go('/me')">
+		        <a v-if="this.accesstoken" href="javascript:;" v-bind:class="{'weui-bar__item_on':active4}" class="weui-tabbar__item" @click="go('/me')">
 		            <i class="iconfont icon-04"></i>
 		           
 		            <p class="weui-tabbar__label">我的</p>
@@ -43,7 +44,7 @@
 
 <!-- 需在main.js首页引入weui.css等模块 -->
 <script>
-
+	
 	export default{
 		data(){
 			return{
@@ -52,7 +53,8 @@
 				active3:false,
 				active4:false,
 				router_name:"",
-				loginname:""
+				loginname:"",
+				accesstoken:""
 
 			}
 		},
@@ -60,7 +62,9 @@
 			loginname(){
 				this.loginname = this.$store.state.loginname;
 				cconsole.log("foter-loginname:"+loginname);
-			}
+				
+			},
+
 		},
 		methods:{
 			go(url){
@@ -119,9 +123,13 @@
 
 		created(){
 			console.log("aaaaaaaa");
+			
+
 
 		},
-
+		beforeMount(){
+			this.accesstoken = localStorage.getItem('accesstoken');
+		},
 		mounted(){
 			// console.log("footerBar-router:"+ this.$router);
 			

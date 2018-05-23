@@ -89,18 +89,23 @@ Vue.use(Router)
 
 
 // 页面刷新时，重新赋值token
-if (window.localStorage.getItem('token')) {
-    store.commit("login", window.localStorage.getItem('token'))
-}
+// if (window.localStorage.getItem('accesstoken')) {
+//     store.commit("addAccessToken", window.localStorage.getItem('accesstoken'))
+// }
+// 
+
 
 const router = new Router({
     routes
 });
 
+
+//直接取xuex里的accesstoken状态判断是否登入会有问题，刷新后status里数据就清空了；
 router.beforeEach((to, from, next) => {
   // var hasToken = router.app.$options.components.App.store.state.token;
   console.log(router); //console router 然后找state的位置
-  var hasToken = router.app.$options.store.state.accesstoken;
+  // var hasToken = router.app.$options.store.state.accesstoken; 
+  var hasToken = localStorage.getItem("accesstoken");
   console.log("hasToken"+hasToken);
     if (to.matched.some(r => r.meta.requireAuth)) {
         if (hasToken) {
