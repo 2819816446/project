@@ -12,19 +12,25 @@
 拉到最下面就可以看到自己的accesstoken，以及对应二维码
 
 ([Cnode API] https://cnodejs.org/api)
+([Axios Api操作指南] https://www.kancloud.cn/yunye/axios/234845)
 
 
+better-scroll 用于首页，文章列表，主要熟悉下用法，本应用运用时还存在“scroll溢出”问题。
+(http://ustbhuangyi.github.io/better-scroll/doc/)
 
+weui  用于快速搭建页面。(https://weui.io/)
+vue-element 主要也是熟悉其用法，用到Message组件模块 (http://element-cn.eleme.io/#/zh-CN/)
 
- ([Cnode社区Api:]https://cnodejs.org/api))
 
 ## 技术栈
 * Vue 2.0
 * vue-router
 * vuex
 * axios
-* scroll-better
+* better-scroll
 * weui
+* vue-element
+
 
 
 ## Build Setup
