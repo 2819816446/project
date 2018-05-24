@@ -41,6 +41,8 @@
 
 <script>
 import axios from 'axios'
+import { Message } from 'element-ui'
+
 export default {
   name: 'Publish',
   data () {
@@ -65,7 +67,12 @@ export default {
   			console.log(res)
   		})
   		.catch(err=>{
-  			console.log("publish 发布失败"+err)
+             Message({
+                message: err.error_msg,
+                type: 'warning',
+                duration: 3 * 1000
+              });  			
+  			console.log("publish失败"+err)
 
   			
   		});
