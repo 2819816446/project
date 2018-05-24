@@ -43,6 +43,11 @@ export default{
 	ClearAccessToken(state,data){
 		localStorage.accesstoken = "";
          state.accesstoken = "";
-	}	
+	},
 
+	// 刷新后从localStorage 获取保存的 accesstoken，赋值给state;防止刷新后accesstoken清空
+	setAccesstokenWhenRefresh(state){
+		state.accesstoken = localStorage.getItem("accesstoken");
+		state.loginname = localStorage.getItem("loginname");
+	}
 }

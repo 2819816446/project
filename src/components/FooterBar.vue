@@ -24,13 +24,13 @@
 		            <p class="weui-tabbar__label">消息</p>
 		        </a>
 		        <!-- !this.$store.state.accesstoken 取state里的accesstoken 刷新后，accesstoken就清空了，会出现再次登入的情况   localStorage.accesstoken --> 
-		        <a v-if="!this.accesstoken" href="javascript:;" v-bind:class="{'weui-bar__item_on':active4}" class="weui-tabbar__item" @click="go('/login')">
+		        <a v-if="!this.$store.state.accesstoken" href="javascript:;" v-bind:class="{'weui-bar__item_on':active4}" class="weui-tabbar__item" @click="go('/login')">
 		            <i class="iconfont icon-04"></i>
 		           
 		            <p class="weui-tabbar__label">我的</p>
 		        </a>
 
-		        <a v-if="this.accesstoken" href="javascript:;" v-bind:class="{'weui-bar__item_on':active4}" class="weui-tabbar__item" @click="go('/me')">
+		        <a v-if="this.$store.state.accesstoken" href="javascript:;" v-bind:class="{'weui-bar__item_on':active4}" class="weui-tabbar__item" @click="go('/me')">
 		            <i class="iconfont icon-04"></i>
 		           
 		            <p class="weui-tabbar__label">我的</p>
