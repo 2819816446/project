@@ -77,6 +77,6 @@ export default {
 <style>
 	.hd{width: 100%;height: 3rem;box-sizing: border-box;padding: 0 20px;background: #F4F4F4;line-height: 3rem;}
 	.hd_title{float: left;}
-	.hd_btn{color: white;background: #04BE02;width: 4rem;height: 2rem;border-radius: 5px;float: right;line-height: 2rem;margin-top: 0.5rem;}
+	.hd_btn{color: white;background: #04BE02;width: 4rem;height: 2rem;border-radius: 5px;float: right;line-height: 2rem;margin-top: 0.5rem;text-align: center;}
 	.publish_tip{width: 90%;margin: 0 auto;color: red;}
 </style>
